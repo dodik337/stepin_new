@@ -1,5 +1,6 @@
+import math
 import sqlite3
-
+import time
 
 def create_db():
     '''Вспомогательная функция для создания таблиц БД '''
@@ -46,6 +47,38 @@ class FDataBase:
             print('Ошибка чтения из БД')
             return []
 
+    def getPost(self):
+        try:
+            sql = """SELECT *  FROM posts"""
+            self.__cur.execute(sql)
+            res = self.__cur.fetchall()
+            if res: return res
+        except:
+            print('Ошибка чтения из БД')
+            return []
+
+    def addPost(self, title, text):
+        try:
+            tm = math.floor(time.time())
+            self.__cur.execute("INSERT INTO posts VALUES (NULL, ?, ?, ?)", (title, text, tm))
+            self.__db.commit()
+        except sqlite3.Error as e:
+            print("Ошибка добавления поста в БД", str(e))
+            return False
+        return True
+
+    def delPost(self, id=0):
+        try:
+            if id == 0:
+                self.__cur.execute(f"DELETE FROM posts")
+            else:
+                self.__cur.execute(f"DELETE FROM posts WHERE id=={id}")
+            self.__db.commit()
+        except sqlite3.Error as e:
+            print('Ошибка удаления из БД', str(e))
+            return False
+        return True
+
 
 if __name__ == '__main__':
     from flask_app import app, connect_db
@@ -55,9 +88,4 @@ if __name__ == '__main__':
     db = FDataBase(db)
     for i in db.getMenu():
         print(i['url'])
-    print(*db.getMenu())
-    # print(db.delMenu())
-    # print(db.addMenu('Главная', 'index'))
-    # print(db.addMenu('Главная', 'index'))
-    # print(db.addMenu('Авторизация1', 'login'))
-    # print(db.addMenu('Авторизация2', 'login2'))
+    print(db.delPost(16))

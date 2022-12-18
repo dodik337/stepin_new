@@ -3,7 +3,8 @@
 import datetime
 import os
 import sqlite3
-
+import time
+import math
 from flask import Flask, render_template, flash, redirect, session, url_for, request, abort, g
 
 from fdatabase import FDataBase
@@ -34,6 +35,23 @@ def close_db(error):
 @app.route('/kuku')
 def hi():  # put application's code here
     return 'sdfsdf!'
+
+@app.route('/post', methods=['POST', 'GET'])
+def post():
+    db = get_db()
+    database = FDataBase(db)
+    tm = math.floor(time.time())
+    if request.method == "POST":
+        if len(request.form['name']) > 3 and len(request.form['post']) > 10:
+            res = database.addPost(request.form['name'], request.form['post'])
+            if not res:
+                flash('Ошибка добавления статьи', category='error')
+            else:
+                flash('Статья добавлена успешно', category='success')
+        else:
+            flash('Ошибка добавления статьи', category='error')
+
+    return render_template('posts.html', title='Пост', menu=database.getMenu())
 
 
 @app.route('/login', methods=['GET', 'POST'])

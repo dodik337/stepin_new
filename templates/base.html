@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/styles.css')}}" type="text/css" >
     {% if title %}
     <title>Самые крутые машины </title>
     {% else%}
@@ -13,7 +14,7 @@
 
 {% block content %}
             {%- block mainmenu -%}
-        <ul>
+        <ul class="mainmenu">
             {% for  m in menu -%}
             <li><a href="{{url_for(m.url)}}"> {{m.title}}</a></li>
         {% endfor -%}

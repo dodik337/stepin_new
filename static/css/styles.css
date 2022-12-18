@@ -1,0 +1,51 @@
+html, body {
+    margin:0;
+    padding:0;
+}
+
+h1 {
+    padding:10px;
+}
+
+ul.mainmenu {
+    list-style:none;
+    background: #3f4137;
+    height: 60px;
+    margin: 0px;
+    padding: 0px;
+    color: #fdc073;
+    font-size: 26px;
+    overflow: hidden;
+}
+
+ul.mainmenu li {
+    float: left;
+    margin: 10px 40px 0px 50px;
+}
+
+ul.mainmenu li .last {
+    float: right;
+}
+
+ul.mainmenu a {
+    color:#fdc073;
+    text-decoration: none;
+}
+
+ul.mainmenu a:hover {
+    color:#8785A2;
+}
+
+.flash {
+    padding: 10px;
+}
+
+.flash.success {
+    border: 1px solid #21DB56;
+    background: #AEFFC5;
+}
+
+.flash.error {
+    border: 1px solid #FF4334;
+    background: #FF9C9C;
+}
