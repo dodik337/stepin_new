@@ -6,6 +6,7 @@ import sqlite3
 import time
 import math
 from flask import Flask, render_template, flash, redirect, session, url_for, request, abort, g
+import git
 
 from fdatabase import FDataBase
 from forms import LoginForm
@@ -31,6 +32,16 @@ def get_db():
 def close_db(error):
     if hasattr(g, 'link_db'):
         g.link_db.close()
+
+@app.route('/update_server', methods=['POST', 'GET'])
+def webhook():
+    if request.method == 'POST':
+        repo = git.Repo('/home/mypythonprojects/stepin_new')
+        origin = repo.remotes.origin
+        origin.pull()
+        return 'Сайт обновился', 200
+    else:
+        return 'Возникла ошибка', 400
 
 @app.route('/kuku')
 def hi():  # put application's code here
