@@ -51,6 +51,10 @@ def hi():  # put application's code here
 def aaaaa():  # put application's code here
     return 'ssssssssssssssss'
 
+@app.route('/bbbb')
+def bbbb():  # put application's code here
+    return 'bbbbbbbbbsssssss'
+
 @app.route('/post', methods=['POST', 'GET'])
 def post():
     db = get_db()
