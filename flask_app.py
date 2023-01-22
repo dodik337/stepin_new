@@ -47,8 +47,8 @@ def webhook():
 def hi():  # put application's code here
     return 'sdfsdf!'
 
-@app.route('/2s')
-def hi():  # put application's code here
+@app.route('/aaaaa')
+def aaaaa():  # put application's code here
     return 'ssssssssssssssss'
 
 @app.route('/post', methods=['POST', 'GET'])
