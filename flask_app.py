@@ -51,6 +51,10 @@ def hi():  # put application's code here
 def test2():  # put application's code here
     return 'Ку куadsasdasdasd'
 
+@app.route('/test10')
+def test10():  # put application's code here
+    return 'Ку куadsasdasdasdsdasdasdasdasda'
+
 @app.route('/aaaaa')
 def aaaaa():  # put application's code here
     return 'ssssssssssssssss'
