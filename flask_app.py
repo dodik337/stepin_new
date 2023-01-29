@@ -55,6 +55,10 @@ def aaaaa():  # put application's code here
 def bbbb():  # put application's code here
     return 'bbbbbbbbbsssssss'
 
+@app.route('/kukuku')
+def kuku():  # put application's code here
+    return 'bbbbbbbbbsssssss'
+
 @app.route('/post', methods=['POST', 'GET'])
 def post():
     db = get_db()
